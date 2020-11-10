@@ -24,10 +24,15 @@ class Tim{
         $q = "DELETE FROM tim WHERE timID=$timID";
         return $conn->query($q);
     }
+
+    public static function add($nazivTima, $drzava, $godinaOsnivanja, $brojTitula, mysqli $conn){
+        $q = "INSERT INTO tim(nazivTima, drzava, godinaOsnivanja, brojTitula) values('$nazivTima', '$drzava', '$godinaOsnivanja',  '$brojTitula')";
+        return $conn->query($q);
+    }
+    
 }
 
-
-
+  
 
 
 
