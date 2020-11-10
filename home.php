@@ -87,7 +87,7 @@ if($result->num_rows == 0){
     </table>
     <div class="row">
         <div class="nesto">
-            <button id="btn-izmeni">Izmeni</button>
+            <button id="btn-izmeni" data-toggle="modal" data-target="#izmeniModal">Izmeni</button>
             <button id="btn-izbrisi">Izbrisi</button>
         </div>
     </div>
@@ -145,6 +145,61 @@ if($result->num_rows == 0){
     </div>
 </div>
 
+
+<div class="modal fade" id="izmeniModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal sadrzaj-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="container tim-form">
+                    <form action="#" method="post" id="izmeniForm">
+                        <h3 style="color: black">Izmena tima</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input id="idd" type="text" name="timID" class="form-control"
+                                           placeholder="Id tima *" value="" readonly/>
+                                </div>
+                                <div class="form-group">
+                                    <input id="nazivv" type="text" name="nazivTima" class="form-control"
+                                           placeholder="Naziv tima *" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <input id="drzavaa" type="text" name="drzava" class="form-control"
+                                           placeholder="Drzava iz koje je tim *" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <input id="godinaa" type="number" name="godinaOsnivanja" class="form-control"
+                                           placeholder="Godina osnivanja *" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <input id="brojj" type="number" name="brojTitula" class="form-control"
+                                           placeholder="Broj titula *" value=""/>
+                                </div>
+                                <div class="form-group">
+                                    <button id="btnIzmeni" type="submit" class="btn btn-success btn-block"
+                                            style="color: white; background-color: orange; border: 1px solid white"><i
+                                                class="glyphicon glyphicon-pencil"></i> Izmjeni sir
+                                    </button>
+                                </div>
+
+                            </div>
+                           
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Zatvori</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 
 <script src="js/main.js"></script>

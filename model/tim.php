@@ -26,14 +26,35 @@ class Tim{
     }
 
     public static function add($nazivTima, $drzava, $godinaOsnivanja, $brojTitula, mysqli $conn){
+       
         $q = "INSERT INTO tim(nazivTima, drzava, godinaOsnivanja, brojTitula) values('$nazivTima', '$drzava', '$godinaOsnivanja',  '$brojTitula')";
         return $conn->query($q);
-    }
     
+        
+}
+    
+
+public static function update($timID, $nazivTima, $drzava, $godinaOsnivanja, $brojTitula, mysqli $conn)
+{
+    $q = "UPDATE tim set nazivTima='$nazivTima', drzava='$drzava', godinaOsnivanja='$godinaOsnivanja', brojTitula='$brojTitula' where timID=$timID";
+    return $conn->query($q);
 }
 
-  
+public static function getById($timID, mysqli $conn)
+    {
+        $q = "SELECT * FROM tim WHERE timID=$timID";
+        $myArray = array();
+        if ($result = $conn->query($q)) {
 
+            while ($row = $result->fetch_array(1)) {
+                $myArray[] = $row;
+            }
+        }
+        return $myArray;
+    }
+
+  
+}
 
 
 ?>
