@@ -25,32 +25,40 @@ if($result->num_rows == 0){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="icon" href="image/logo.png"/>
-    <link rel="text/css" href="css/home.css">
+    <link rel="stylesheet" href="css/home.css">
     <title>Fudbalski timovi</title>
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <div>
-        <h1>Dobrodosli na sajt!</h1>
+    
+<div class="jumbotron text-center" style=" background-color: rgba(255, 182, 193, 0);">
+      <div class="container">
+        <h1 style="color:darkred">Dobrodošli na sajt!</h1>
+        <p>Pred vama je pregled timova engleske premijer lige</p>
+      </div>
     </div>
 <div class ="row">
-        <div class="nesto" style="width: 35%; float: left;  background-color:blue; padding-right:20px;">
+        <div class="col-md-4"  style="width: 33.3%;  text-align:center; float: left;  padding-right:20px;
+       background-color: rgba(255, 255, 255, 0.4);">
             <h2>Pregled timova u ligi</h2>
-            <button id="btn" onclick="prikazi()">Pregled</button>
+            <button id="btn" class="btn btn-default btn-danger" onclick="prikazi()">Pregled</button>
         </div>
-        <div class="nesto" style="width: 30%; float: left;  background-color:blue; padding-right:20px;">
-            <h2>Dodaj novi tim</h2>
-            <button id="btn-dodaj" data-toggle="modal" data-target="#myModal">Dodaj</button>
-        </div>
-        <div class="nesto" style="width: 30%; float: left;  background-color:blue; padding-right:20px;">
+        
+        <div class="col-md-4" style="width: 33.3%; float: left; text-align:center; background-color: rgba(255, 255, 255, 0.4);"  text-align:center; background-color:gray; padding-right:20px;">
             <h2>Pretraga timova</h2>
             
-            <input type="text" id="myInput" placeholder="Pretrazi timove" onkeyup="pretrazi()">
+            <input type="text" id="myInput" class = "btn" placeholder="Pretrazi timove" onkeyup="pretrazi()">
             
         </div>
+        <div class="col-md-4" style="width: 33.3%; float: left; text-align:center; background-color: rgba(255, 255, 255, 0.4);" text-align:center; background-color:blue; padding-right:20px;">
+            <h2>Dodaj novi tim</h2>
+            <button id="btn-dodaj" class="btn btn-default btn-danger" data-toggle="modal" data-target="#myModal">Dodaj</button>
+        </div>
+        
 </div>
+
 <div id="pregled">
-<table id="tabela">
+<table id="tabela" class="table sortable table-bordered table-hover ">
     <thead>
     <tr>
         <th scope="col">#</th>
@@ -85,11 +93,17 @@ if($result->num_rows == 0){
             ?>
     </tbody>
     </table>
-    <div class="row">
-        <div class="nesto">
-            <button id="btn-izmeni" data-toggle="modal" data-target="#izmeniModal">Izmeni</button>
-            <button id="btn-izbrisi">Izbrisi</button>
-        </div>
+    <div>
+        
+            <div class="col-md-6" style="text-align:center; width:50%;float:left">
+                <button id="btn-izmeni" class="btn-danger" data-toggle="modal" data-target="#izmeniModal">Izmeni</button>
+            </div>
+            <div class="col-md-6" style="text-align:center; width:50%; float:left">
+                <button id="btn-izbrisi" class =" btn-danger">Izbrisi</button>
+            </div>
+            
+            
+        
     </div>
 </div>
 
@@ -183,7 +197,7 @@ if($result->num_rows == 0){
                                 <div class="form-group">
                                     <button id="btnIzmeni" type="submit" class="btn btn-success btn-block"
                                             style="color: white; background-color: orange; border: 1px solid white"><i
-                                                class="glyphicon glyphicon-pencil"></i> Izmjeni sir
+                                                class="glyphicon glyphicon-pencil"></i> Izmeni tim
                                     </button>
                                 </div>
 
@@ -201,7 +215,7 @@ if($result->num_rows == 0){
     </div>
 </div>
 
-
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 <script src="js/main.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
