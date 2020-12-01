@@ -30,7 +30,7 @@ $('#btn-izbrisi').click( function(){
 });
 
 $('#btn-izmeni').click(function () {
-  alert("nesto");
+
   const checked = $('input[name=checked-donut]:checked');
 
   request = $.ajax({

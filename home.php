@@ -2,10 +2,11 @@
 
 require "dbBroker.php";
 require "model/tim.php";
-
 session_start();
-
-//nesto oko logout
+if(empty($_SESSION['loggeduser']) || $_SESSION['loggeduser'] == ''){
+    header("Location: index.php");
+    die();
+}
 
 $result = Tim::getAll($conn);
 if(!$result){
@@ -33,8 +34,7 @@ if($result->num_rows == 0){
     
 <div class="jumbotron text-center" style=" background-color: rgba(255, 182, 193, 0);">
       <div class="container">
-        <h1 style="color:darkred">Dobrodošli na sajt!</h1>
-        <p>Pred vama je pregled timova engleske premijer lige</p>
+        <h1 style="color:darkred">Engleska premijer liga</h1>
       </div>
     </div>
 <div class ="row">
@@ -63,7 +63,7 @@ if($result->num_rows == 0){
     <tr>
         <th scope="col">#</th>
         <th scope="col">Naziv tima</th>
-        <th scope="col">Drzava</th>
+        <th scope="col">Grad</th>
         <th scope="col">Godina osnivanja</th>
         <th scope="col">Broj titula</th>
         <th scope="col">Izaberi tim</th>
@@ -95,18 +95,21 @@ if($result->num_rows == 0){
     </table>
     <div>
         
-            <div class="col-md-6" style="text-align:center; width:50%;float:left">
+            <div class="col-md-4" style="text-align:center; width:33.3%;float:left">
                 <button id="btn-izmeni" class="btn-danger" data-toggle="modal" data-target="#izmeniModal">Izmeni</button>
             </div>
-            <div class="col-md-6" style="text-align:center; width:50%; float:left">
+            <div class="col-md-4" style="text-align:center; width:33.3%; float:left">
                 <button id="btn-izbrisi" class =" btn-danger">Izbrisi</button>
             </div>
-            
-            
+            <div class="col-md-4" style="text-align:center; width:33.3%;float:left">
+                <button id="btn-izmeni" class="btn-danger" onclick="sortTable()">Sortiraj po nazivu</button>
+            </div>
+        
         
     </div>
 </div>
-
+<br>
+<a href="logout.php" class= "label label-primary" style="font-size:16px; display:in-line; float:right">Logout</a>
 <div class="modal fade" id="myModal" role="dialog" >
     <div class="modal-dialog">
 
@@ -126,7 +129,7 @@ if($result->num_rows == 0){
                                            placeholder="Naziv tima *" value="<?php echo $red["timID"] ?>"/>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" style="border: 1px solid black" name="drzava" class="form-control" placeholder="Drzava  *"
+                                    <input type="text" style="border: 1px solid black" name="drzava" class="form-control" placeholder="Grad  *"
                                            value=""/>
                                 </div>
                                 <div class="form-group">
@@ -184,7 +187,7 @@ if($result->num_rows == 0){
                                 </div>
                                 <div class="form-group">
                                     <input id="drzavaa" type="text" name="drzava" class="form-control"
-                                           placeholder="Drzava iz koje je tim *" value=""/>
+                                           placeholder="Grad iz koga je tim *" value=""/>
                                 </div>
                                 <div class="form-group">
                                     <input id="godinaa" type="number" name="godinaOsnivanja" class="form-control"
@@ -248,7 +251,32 @@ for (i = 0; i < tr.length; i++) {
         }
     }
 }
-}</script>
+}
+
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("tabela");
+  switching = true;
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[1];
+      y = rows[i + 1].getElementsByTagName("TD")[1];
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+
+</script>
 </body>
 </html>    
 
