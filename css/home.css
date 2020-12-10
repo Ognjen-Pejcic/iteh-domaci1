@@ -70,7 +70,7 @@ button:hover {
     cursor: pointer;
 }
 
-div.modal-content {
+.modal-content {
     background-image: url("../image/back.jpg");
 }
 
@@ -80,11 +80,15 @@ div.modal-content {
     border-color: #bce8f100;
 }
 
-h2{
+h3{
     color: darkred;
 }
 
 
 p{
     color: darkred;
+}
+.btnimage{
+    width: 25px;
+    height: 25px;
 }
